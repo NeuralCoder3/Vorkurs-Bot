@@ -77,8 +77,8 @@ if(uebung) {
     wanted=`uebung_${date}.pdf`;
     urlpath=`sheets/daily/2021/${wanted}`;
 } else {
+    date=warmupMapping[timestamp];
     // date="A2";
-    date=uebungMapping[timestamp];
     wanted=`warmup_${date}.pdf`;
     urlpath=`sheets/warmup/2021/${wanted}`;
 }
