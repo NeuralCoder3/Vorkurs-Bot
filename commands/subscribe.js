@@ -5,6 +5,9 @@ module.exports = {
 	description: 'Bestellt automatisch tägliche Warmup Blätter.',
     run(client,interaction) {
         let channelId=interaction.channel_id;
+		const channel = client.channels.cache.find(channel => channel.id === channelId);
+        // console.log(channel);
+        let channelName=channel.name;
         let uebung=false;
         url=board.getBoard(channelId);
         if(global.sub_db.findOne({
@@ -25,6 +28,7 @@ module.exports = {
             global.sub_db.save({
                 uebung: uebung,
                 channelId: channelId,
+                channelName: channelName,
                 executed: 0
             });
             client.api.interactions(interaction.id, interaction.token).callback.post({
