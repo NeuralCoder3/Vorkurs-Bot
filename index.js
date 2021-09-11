@@ -51,9 +51,10 @@ const Intents = Discord.Intents;
 const client = new Discord.Client({intents: [
 	Intents.FLAGS.GUILDS,
 	Intents.FLAGS.GUILD_INTEGRATIONS,
-	Intents.FLAGS.GUILD_MESSAGES,
-	Intents.FLAGS.GUILD_MESSAGE_TYPING,
-	Intents.FLAGS.DIRECT_MESSAGES]});
+	// Intents.FLAGS.GUILD_MESSAGES,
+	// Intents.FLAGS.GUILD_MESSAGE_TYPING,
+	// Intents.FLAGS.DIRECT_MESSAGES
+]});
 global.client=client;
 global.gitlabToken=gitlabToken;
 global.appId=appId;
@@ -88,6 +89,7 @@ const board = require('./commands/board');
 // │    │    └─────────────── hour (0 - 23)
 // │    └──────────────────── minute (0 - 59)
 // └───────────────────────── second (0 - 59, OPTIONAL)
+// const job = schedule.scheduleJob('0 */5 * * * *', function(){
 const job = schedule.scheduleJob('0 */15 9-11 * * 1-5', function(){
 // const job = schedule.scheduleJob('0 */30 9-11 * * 1-5', function(){
 // const job = schedule.scheduleJob('0 */5 8 * * 1-5', function(){
