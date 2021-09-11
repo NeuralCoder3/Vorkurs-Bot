@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.5",
+    "axios": "^0.21.4",
+    "dateformat": "^4.5.1",
+    "discord.js": "^13.1.0",
+    "diskdb": "^0.1.17",
+    "node-schedule": "^2.0.0",
+    "shelljs": "^0.8.4"
+  },
+  "scripts": {
+    "start": "node --experimental-modules --experimental-worker index.js"
+  }
+}
