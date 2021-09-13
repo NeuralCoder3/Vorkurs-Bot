@@ -14,6 +14,9 @@ function getBoard(channelId) {
 			}
 		}
 	}
+	if(!urlEntry) {
+		urlEntry={channel:channelId,board:"https://miro.com/app/board/o9J_lx8Siyc=/"};
+    }
 	url=urlEntry.board;
 	return url;
 }
