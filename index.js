@@ -183,7 +183,8 @@ client.once('ready', () => {
 					description: command.description
 				}};
 			}
-			client.api.applications(client.user.id).guilds(guild.id).commands.post (regCmd);
+			//client.api.applications(client.user.id).guilds(guild.id).commands.post (regCmd);
+			client.api.applications(client.user.id).commands.post (regCmd);
 		}
 	}
 
@@ -234,7 +235,7 @@ client.once('ready', () => {
 // const textchannels = require(`./commands/textchannels.js`);
 // client.on('voiceStateUpdate', textchannels.handler);
 
-
+/*
 client.on('message', message => {
     // if (message.content.toLowerCase() == "!shutdown") { 
     //     message.channel.send("Shutting down...").then(() => {
@@ -244,7 +245,7 @@ client.on('message', message => {
     // }
 
 });
-
+*/
 
 const readInterface = readline.createInterface({
     input: fs.createReadStream('boards.txt'),
