@@ -62,6 +62,7 @@ warmupMapping={
 boardId=workerData.boardId
 boardUrl=`https://miro.com/app/board/${boardId}/`;
 uebung=workerData.uebung
+flush=workerData.flush
 gitlabToken=workerData.gitlabToken
 
 
@@ -103,12 +104,15 @@ try {
 } catch(err) {
     console.error(err)
 }
+if(flush) {
+    fileExists=false;
+}
 if(!fileExists){
     console.log("Download File");
     exec(` curl --output ${localPath} --header "PRIVATE-TOKEN: ${gitlabToken}" ${url} `);
 }
 try {
-    exec(` python miro.py ${boardId} ${localPath}`);
+    exec(` python miro.py ${boardId} ${localPath} ${flush}`);
     // exec(` sleep 10;echo HI`);
     try {
         // editInteraction(client,interaction,`[Hier](${url}) ist dein Whiteboard mit ${uebung ? 'Übungsblatt' : 'Warmup Blatt'}.`);

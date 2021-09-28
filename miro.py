@@ -14,6 +14,7 @@ import subprocess
 from random import randint
 import shelve
 import sys
+import glob
 from cred import *
 
 end=False
@@ -77,13 +78,14 @@ def pdfToPng(pdfPath):
     imgPath2=pdfPath.replace(".pdf","")
     imgPath3=pdfPath.replace(".pdf","-*")
     imgPath=pdfPath.replace(".pdf",".png")
+    for f in glob.glob(imgPath3):
+        os.remove(f)
     subprocess.call(["pdftoppm", "-png",pdfPath,imgPath2])
     subprocess.call(["convert", "+append",imgPath3,imgPath])
-    # subprocess.call(["rm", imgPath3])
     return imgPath
 
 def addPdf(pdf,boardId,uploadTime):
-    if pdf in db:
+    if pdf in db and not flush:
         imgUrl=db[pdf]
     else:
         imgPath=pdfToPng(pdf)
@@ -140,6 +142,7 @@ def uploadPdf(sheetPdf,boardId,uploadTime=20):
 
 board=sys.argv[1]
 pdf=sys.argv[2]
+flush="t" in sys.argv[3].lower()
 boardUrl=f"https://miro.com/app/board/{board}/"
 
 uploadPdf(pdf,boardUrl)

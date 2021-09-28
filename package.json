@@ -6,7 +6,8 @@
     "discord.js": "^13.1.0",
     "diskdb": "^0.1.17",
     "node-schedule": "^2.0.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "url-exists": "^1.0.3"
   },
   "scripts": {
     "start": "node --experimental-modules --experimental-worker index.js"

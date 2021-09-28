@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 global.Discord=Discord;
-const { prefix, token, appId, gitlabToken} = require('./config.json');
+const { ids, prefix, token, appId, gitlabToken} = require('./config.json');
 const readline = require('readline');
 // const Keyv = require('keyv');
 // var Datastore = require('nedb')
@@ -58,6 +58,7 @@ const client = new Discord.Client({intents: [
 global.client=client;
 global.gitlabToken=gitlabToken;
 global.appId=appId;
+global.ids=ids;
 client.commands = new Discord.Collection();
 client.commandList = [];
 
@@ -185,7 +186,7 @@ client.once('ready', () => {
 					description: command.description
 				}};
 			}
-			//client.api.applications(client.user.id).guilds(guild.id).commands.post (regCmd);
+			// client.api.applications(client.user.id).guilds(guild.id).commands.post (regCmd);
 			client.api.applications(client.user.id).commands.post (regCmd);
 		}
 	}

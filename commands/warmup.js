@@ -21,7 +21,7 @@ const editInteraction = async (client, interaction, response) => {
 };
 
 
-function createSheetBoard(client, interaction, uebung=false) {
+function createSheetBoard(client, interaction, uebung=false, flush=false) {
     let channelId=interaction.channel_id;
     url=board.getBoard(channelId);
 
@@ -35,7 +35,7 @@ function createSheetBoard(client, interaction, uebung=false) {
         data: {
             type: 4, // 5 for waiting symbol, but 5 can not contain text
             data: {
-                content: `Ich sende das ${uebung ? 'Übungsblatt' : 'Warmup Blatt'} [hierher](${url}).`
+                content: `Ich sende das ${uebung ? 'Übungsblatt' : 'Warmup Blatt'} [hierher](${url}).${flush? " Zudem wird der Cache geleert." : ""}`
             }
         }
     }).catch(function(err){
@@ -55,7 +55,8 @@ function createSheetBoard(client, interaction, uebung=false) {
         {
             boardId: boardId,
             uebung: uebung,
-            gitlabToken: global.gitlabToken
+            gitlabToken: global.gitlabToken,
+            flush: flush
         }
     });
     worker.on('message',msg =>
@@ -80,7 +81,7 @@ function createSheetBoard(client, interaction, uebung=false) {
 
 module.exports = {
 	name: 'warmup',
-	description: 'Erstellt ein Board mit dem akutellen Warmup Blatt.',
+	description: 'Erstellt ein Board mit dem aktuellen Warmup Blatt.',
 	createSheetBoard: createSheetBoard,
 	// fillBoard: fillBoard,
 	editInteraction: editInteraction, // TODO: move to index.js
